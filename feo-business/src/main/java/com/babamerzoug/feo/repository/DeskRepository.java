@@ -1,6 +1,6 @@
 package com.babamerzoug.feo.repository;
 
-import com.babamerzoug.feo.domain.CurrencyExchangeDesk;
+import com.babamerzoug.feo.domain.Desk;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
@@ -9,6 +9,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * Date: 10/29/13
  * Time: 5:23 PM
  */
-public interface CurrencyExchangeDeskRepository extends MongoRepository<CurrencyExchangeDesk,String> {
+public interface DeskRepository extends MongoRepository<Desk,String> {
 
 }

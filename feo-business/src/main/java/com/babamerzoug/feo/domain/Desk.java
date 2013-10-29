@@ -8,23 +8,23 @@ import org.springframework.data.annotation.Id;
  * Date: 10/29/13
  * Time: 5:00 PM
  */
-public class CurrencyExchangeDesk {
+public class Desk {
 
     @Id
     private String id;
     private String name;
 
-    public CurrencyExchangeDesk() {
+    public Desk() {
     }
 
-    public CurrencyExchangeDesk(String id, String name) {
+    public Desk(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "CurrencyExchangeDesk{" +
+        return "Desk{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 '}';

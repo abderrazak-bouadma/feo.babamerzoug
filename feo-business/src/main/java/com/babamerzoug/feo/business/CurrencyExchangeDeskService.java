@@ -1,7 +1,7 @@
 package com.babamerzoug.feo.business;
 
-import com.babamerzoug.feo.domain.CurrencyExchangeDesk;
-import com.babamerzoug.feo.repository.CurrencyExchangeDeskRepository;
+import com.babamerzoug.feo.domain.Desk;
+import com.babamerzoug.feo.repository.DeskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +17,9 @@ import java.util.List;
 public class CurrencyExchangeDeskService {
 
     @Autowired
-    private CurrencyExchangeDeskRepository exchangeDeskRepository;
+    private DeskRepository exchangeDeskRepository;
 
-    public List<CurrencyExchangeDesk> findAll() {
+    public List<Desk> findAll() {
         return exchangeDeskRepository.findAll();
     }
 }
