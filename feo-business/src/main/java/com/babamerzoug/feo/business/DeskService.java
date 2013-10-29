@@ -14,7 +14,7 @@ import java.util.List;
  * Time: 5:28 PM
  */
 @Service
-public class CurrencyExchangeDeskService {
+public class DeskService {
 
     @Autowired
     private DeskRepository exchangeDeskRepository;
