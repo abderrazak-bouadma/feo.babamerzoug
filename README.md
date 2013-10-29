@@ -9,3 +9,4 @@ angularjs (yeoman)
 
 testing
 cucumberjs/zombiejs
+phantomejs
