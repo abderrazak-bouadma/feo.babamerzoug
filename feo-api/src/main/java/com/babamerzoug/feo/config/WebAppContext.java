@@ -24,7 +24,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
-@Import(BusinessContext.class)
+@Import({RepositoryContext.class, BusinessContext.class})
 @ComponentScan(basePackages = {"com.babamerzoug.feo.controller"})
 public class WebAppContext extends WebMvcConfigurerAdapter {
 
