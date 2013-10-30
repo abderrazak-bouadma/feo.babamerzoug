@@ -33,7 +33,7 @@ public class DeskController {
         return deskService.findById(id);
     }
 
-    @RequestMapping(value = "/desks", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/desks", method = RequestMethod.PUT)
     @ResponseBody
     public Desk push(@RequestBody Desk desk) {
         return deskService.add(desk);
