@@ -1,12 +1,7 @@
-The FEO BABAMERZOUG portal ...
+Application used by Algerian community exclusively to have information about in-country foreign exchange market
 
-Stack used 
+to run application you must have a mongodb instance running
 
-mongodb
-spring-data-mongo
-spring-hateoas
-angularjs (yeoman)
+to run application simply do :
 
-testing
-cucumberjs/zombiejs
-phantomejs
+feo-api/mvn clean jetty:run
