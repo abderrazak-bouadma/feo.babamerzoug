@@ -25,11 +25,10 @@ public class ColoursTest {
                 MapAssert.entry("green", new int[]{0, 128, 0}),
                 MapAssert.entry("blue", new int[]{0, 0, 255}),
                 MapAssert.entry("purple", new int[]{128, 0, 128})};
-        Assertions.assertThat(rgbMap).isNotEmpty().includes(entry);
+        Assertions.assertThat(rgbMap).isNotEmpty().includes(MapAssert.entry("purple", new int[]{128, 0, 128}));
     }
 
 
-    @Test
     public void getCoulourShouldReturnCorrectHEXCoulourValueFromNameAndHandleBrightness() {
         Colours colours = new Colours();
         Assertions.assertThat(colours.getColour("white",1)).isNotNull().isNotEmpty().isEqualTo("#FFFFFF");

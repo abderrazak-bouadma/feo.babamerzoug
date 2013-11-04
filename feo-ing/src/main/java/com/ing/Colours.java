@@ -89,21 +89,10 @@ public class Colours {
     }
 
     private String toHEX(int[] copyColor) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < copyColor.length; i++) {
-            int n = Integer.parseInt(String.valueOf(copyColor[i]), 10);
-            System.out.println("1 ************** " + n);
-            n = Math.max(0, Math.min(n, 255));
-            System.out.println("2 ************** " + n);
-            final String s = "0123456789ABCDEF";
-            int a = s.charAt((n - n % 16) / 16) + s.charAt(n % 16);
-            System.out.println("3************* " + a);
-            System.out.println("--------------------" + Integer.valueOf(a));
-            sb.append(a);
-        }
-        final String result = "#" + sb.toString();
-        System.out.println(result);
-        return result;
+        final int r = copyColor[0];
+        final int g = copyColor[1];
+        final int b = copyColor[2];
+        return String.format("#%02x%02x%02x", r, g, b).toUpperCase();
     }
 
     private void applyBrightness(float brightness, int[] copyColor) {
