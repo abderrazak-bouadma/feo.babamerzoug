@@ -50,7 +50,12 @@ public class Colours {
         while (tokenizer.hasMoreTokens()) {
             keyValtoken = tokenizer.nextToken();
             final StringTokenizer kvTokenizer = new StringTokenizer(keyValtoken, ":");
-            coloursRGB.put(kvTokenizer.nextToken(), convertToRGB(kvTokenizer.nextToken()));
+
+            String colorName = kvTokenizer.nextToken();
+            colorName = StringUtils.deleteWhitespace(colorName);
+            colorName = StringUtils.remove(colorName, "\"");
+            final String colorHEXValue = kvTokenizer.nextToken();
+            coloursRGB.put(colorName, convertToRGB(colorHEXValue));
         }
     }
 
@@ -73,6 +78,46 @@ public class Colours {
     }
 
     public String getColour(String colorName, float brightness) {
+        int[] copyColor = copyColorTab(colorName);
+        if (copyColor != null) {
+            if (brightness < 1f && brightness >= 0f) {
+                applyBrightness(brightness, copyColor);
+            }
+            return toHEX(copyColor);
+        }
         return null;
+    }
+
+    private String toHEX(int[] copyColor) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < copyColor.length; i++) {
+            int n = Integer.parseInt(String.valueOf(copyColor[i]), 10);
+            System.out.println("1 ************** " + n);
+            n = Math.max(0, Math.min(n, 255));
+            System.out.println("2 ************** " + n);
+            final String s = "0123456789ABCDEF";
+            int a = s.charAt((n - n % 16) / 16) + s.charAt(n % 16);
+            System.out.println("3************* " + a);
+            System.out.println("--------------------" + Integer.valueOf(a));
+            sb.append(a);
+        }
+        final String result = "#" + sb.toString();
+        System.out.println(result);
+        return result;
+    }
+
+    private void applyBrightness(float brightness, int[] copyColor) {
+        copyColor[0] = (int) (copyColor[0] * brightness);
+        copyColor[1] = (int) (copyColor[1] * brightness);
+        copyColor[2] = (int) (copyColor[2] * brightness);
+    }
+
+    private int[] copyColorTab(String colorName) {
+        final int[] originaleColor = coloursRGB.get(colorName);
+        int[] copyColor = new int[3];
+        copyColor[0] = originaleColor[0];
+        copyColor[1] = originaleColor[1];
+        copyColor[2] = originaleColor[2];
+        return copyColor;
     }
 }

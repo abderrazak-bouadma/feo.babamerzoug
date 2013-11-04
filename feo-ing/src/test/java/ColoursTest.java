@@ -25,16 +25,17 @@ public class ColoursTest {
                 MapAssert.entry("green", new int[]{0, 128, 0}),
                 MapAssert.entry("blue", new int[]{0, 0, 255}),
                 MapAssert.entry("purple", new int[]{128, 0, 128})};
-        Assertions.assertThat(rgbMap).isNotEmpty().includes();
+        Assertions.assertThat(rgbMap).isNotEmpty().includes(entry);
     }
 
 
+    @Test
     public void getCoulourShouldReturnCorrectHEXCoulourValueFromNameAndHandleBrightness() {
         Colours colours = new Colours();
         Assertions.assertThat(colours.getColour("white",1)).isNotNull().isNotEmpty().isEqualTo("#FFFFFF");
-        Assertions.assertThat(colours.getColour("white",0.75f)).isNotNull().isNotEmpty().isEqualTo("#FFFFFF");
-        Assertions.assertThat(colours.getColour("white",0.5f)).isNotNull().isNotEmpty().isEqualTo("#FFFFFF");
-        Assertions.assertThat(colours.getColour("white",1.1f)).isNotNull().isNotEmpty().isEqualTo("#FFFFFF");
+        Assertions.assertThat(colours.getColour("white",0.75f)).isNotNull().isNotEmpty().isEqualTo("#FFFFFA");
+        Assertions.assertThat(colours.getColour("white",0.5f)).isNotNull().isNotEmpty().isEqualTo("#FFFFFB");
+        Assertions.assertThat(colours.getColour("white",1.1f)).isNotNull().isNotEmpty().isEqualTo("#FFFFFC");
     }
 
     public void toJSONShouldReturnOriginalCouloursAndApplyBrightness() {
