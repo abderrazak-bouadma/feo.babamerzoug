@@ -49,6 +49,7 @@
         <module>feo-business</module>
         <module>feo-api</module>
         <module>feo-app</module>
+        <module>feo-ing</module>
     </modules>
 
     <properties>
