@@ -6,11 +6,17 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: merzoug
- * Date: 10/31/13
- * Time: 3:58 PM
+ * User: abderrazak
+ * Date: 10/30/13
+ * Time: 11:08 PM
  */
 public interface UserService {
+
+    User findByUsername(String username);
+
+    User create(User user);
+
+    void remove(User user);
 
     List<User> findAll();
 }

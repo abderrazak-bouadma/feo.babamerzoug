@@ -15,7 +15,7 @@ public class User {
     @Id
     private String id;
     private int reputation;
-    private String displayName;
+    private String username;
     private String email;
     private String realName;
     private String location;
@@ -26,7 +26,7 @@ public class User {
     }
 
     public User(String displayName, String email) {
-        this.displayName = displayName;
+        this.username = displayName;
         this.email = email;
     }
 
@@ -35,7 +35,7 @@ public class User {
         return "User{" +
                 "id='" + id + '\'' +
                 ", reputation=" + reputation +
-                ", displayName='" + displayName + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", realName='" + realName + '\'' +
                 ", location='" + location + '\'' +
@@ -60,12 +60,12 @@ public class User {
         this.reputation = reputation;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
