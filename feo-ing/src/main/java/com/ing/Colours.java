@@ -109,4 +109,35 @@ public class Colours {
         copyColor[2] = originaleColor[2];
         return copyColor;
     }
+
+    public String getJSON(float brightness) {
+        Map<String, int[]> result = new HashMap<>();
+        if (brightness >= 0 && brightness <= 1) {
+            for (Map.Entry<String, int[]> entry : coloursRGB.entrySet()) {
+                int[] t = new int[3];
+                t[0] = entry.getValue()[0];
+                t[1] = entry.getValue()[1];
+                t[2] = entry.getValue()[2];
+                applyBrightness(brightness, t);
+                result.put(entry.getKey(), t);
+            }
+        } else {
+            result.putAll(coloursRGB);
+        }
+        return buildJSONString(result);
+    }
+
+    private String buildJSONString(Map<String, int[]> result) {
+        StringBuffer sb =new StringBuffer();
+        sb.append("{");
+        for (Map.Entry<String, int[]> entry : result.entrySet()) {
+            sb.append("\""+entry.getKey()+"\"");
+            sb.append(":");
+            sb.append("\""+toHEX(entry.getValue())+"\"");
+            sb.append(",");
+        }
+        // removes tailing period and adds last curly bracket
+        sb.deleteCharAt(sb.length()-1).append("}");
+        return sb.toString();
+    }
 }

@@ -21,6 +21,20 @@ public class UserServiceDefault implements UserService {
     private UserRepository userRepository;
 
     @Override
+    public User findByUsername(String username) {
+        return null;
+    }
+
+    @Override
+    public User create(User user) {
+        return null;
+    }
+
+    @Override
+    public void remove(User user) {
+    }
+
+    @Override
     public List<User> findAll() {
         return userRepository.findAll();
     }
