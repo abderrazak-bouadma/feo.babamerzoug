@@ -18,39 +18,39 @@ import java.util.StringTokenizer;
  */
 public class Colours {
 
-    private Map<String, int[]> coloursRGB = new HashMap<>();
+    private static final String JSON_COLOURS_SOURCE_FILENAME = "colours.json";
+    private final Map<String, int[]> coloursRGB = new HashMap<>();
+    private final StringBuffer json = new StringBuffer();
 
     public Colours() {
-        StringBuffer json = new StringBuffer();
-        loadJSON(json);
-        removeLeadingTailingCurlyBrackets(json);
-        buildMap(json);
+        loadJSON();
+        cleanJsonString();
+        buildMap();
     }
 
     public Map<String, int[]> getColoursRGB() {
         return coloursRGB;
     }
 
-    private void loadJSON(StringBuffer json) {
+    private void loadJSON() {
         try {
-            final InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream("colours.json");
+            final InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(JSON_COLOURS_SOURCE_FILENAME);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream));
-            String strLine = null;
-            while ((strLine = bufferedReader.readLine()) != null) {
-                json.append(strLine);
+            String oneLine;
+            while ((oneLine = bufferedReader.readLine()) != null) {
+                json.append(oneLine);
             }
         } catch (RuntimeException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void buildMap(StringBuffer json) {
+    private void buildMap() {
         StringTokenizer tokenizer = new StringTokenizer(json.toString(), ",");
-        String keyValtoken;
+        String keyValToken;
         while (tokenizer.hasMoreTokens()) {
-            keyValtoken = tokenizer.nextToken();
-            final StringTokenizer kvTokenizer = new StringTokenizer(keyValtoken, ":");
-
+            keyValToken = tokenizer.nextToken();
+            final StringTokenizer kvTokenizer = new StringTokenizer(keyValToken, ":");
             String colorName = kvTokenizer.nextToken();
             colorName = StringUtils.deleteWhitespace(colorName);
             colorName = StringUtils.remove(colorName, "\"");
@@ -59,7 +59,7 @@ public class Colours {
         }
     }
 
-    private void removeLeadingTailingCurlyBrackets(StringBuffer json) {
+    private void cleanJsonString() {
         json.replace(0, 1, "");
         json.replace(json.length() - 1, json.length(), "");
     }
@@ -128,16 +128,16 @@ public class Colours {
     }
 
     private String buildJSONString(Map<String, int[]> result) {
-        StringBuffer sb =new StringBuffer();
+        StringBuffer sb = new StringBuffer();
         sb.append("{");
         for (Map.Entry<String, int[]> entry : result.entrySet()) {
-            sb.append("\""+entry.getKey()+"\"");
+            sb.append("\"" + entry.getKey() + "\"");
             sb.append(":");
-            sb.append("\""+toHEX(entry.getValue())+"\"");
+            sb.append("\"" + toHEX(entry.getValue()) + "\"");
             sb.append(",");
         }
         // removes tailing period and adds last curly bracket
-        sb.deleteCharAt(sb.length()-1).append("}");
+        sb.deleteCharAt(sb.length() - 1).append("}");
         return sb.toString();
     }
 }
